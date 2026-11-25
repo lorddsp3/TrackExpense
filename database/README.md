@@ -25,5 +25,3 @@ This directory contains the proposed MySQL database design for the ExpenseTracke
 - budgets
 - obligations
 - user_settings
-
-**Note:** This is a proposed database module. The current website uses browser localStorage. MySQL connectivity and server-side authentication have not yet been integrated.
