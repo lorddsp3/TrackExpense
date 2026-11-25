@@ -1,0 +1,1007 @@
+* {
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body {
+    background: linear-gradient(135deg, #2e8b57, #a8d5ba);
+    min-height: 100vh;
+    font-family:'Gill Sans', 'Gill Sans MT',Calibri, 'Trebuchet MS', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    color: #2d3436;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    background-color: white;
+    padding: 2rem;
+    border-radius: 24px;
+    box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+}
+
+h1 {
+    text-align:center;
+    color:#1a202c;
+    margin-bottom:35px;
+    font-size: 2.2rem;
+    font-weight: 600;
+    letter-spacing: -0.5px;
+}
+
+h2 {
+    color: #2d3748;
+    margin-bottom:1rem;
+    font-size : 1.25rem;
+    font-weight: 500;
+}
+
+.balance-container {
+    text-align : center;
+    margin-bottom : 35px;
+    padding: 24px;
+    background: linear-gradient(135deg, #a8d5ba, #6b8e23);
+    border-radius: 1rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.balance-container h1 {
+    font-size: 3rem;
+    margin : 15px 0;
+}
+
+.summary {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap :24px;
+    margin-top:24px;
+}
+
+.main-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap :24px;
+}
+
+.income,
+.expenses {
+    background-color: white;
+    margin : 10px 10px;
+    padding: 24px;
+    border-radius: 1rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    transition : transform 0.2s ease;
+}
+
+.income:hover,
+.expenses:hover {
+    transform: translateY(-2px);
+}
+
+.income h3 {
+    color: #059669;
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.expenses h3 {
+    color: #dc2626;
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.income p,
+.expenses p {
+    margin-top : 8px;
+    font-size: 1.75rem;
+    font-weight: 600;
+}
+
+.income p {
+    color : #059669;
+}
+
+.expenses p {
+    color: #dc2626;
+}
+
+
+.transaction-container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+#transaction-list {
+    list-style: none;
+    max-height: 500px;
+    overflow-y: auto;
+    padding-right: 8px;
+    flex-grow: 1;
+}
+
+#transaction-list::-webkit-scrollbar {
+    width: 10px;
+}
+#transaction-list::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
+    border-radius: 4px;
+}
+
+#transaction-list::-webkit-scrollbar-thumb {
+    background-color: #cbd5e0;
+    border-radius: 4px;
+}
+#transaction-list::-webkit-scrollbar-thumb:hover {
+    border-color: #a0aec0;
+}
+
+
+.transaction {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.2rem;
+    margin-bottom: 12px;
+    border-radius:12px;
+    background-color: #fff;
+    box-shadow: 0 2px rgba(0,0,0,0.05);
+    transition: all 0.2s ease;
+    border-right: 5px solid;
+    animation: slidein 0.3s ease ;
+    cursor: pointer; /* clicking a row (not the delete button) opens it for editing */
+}
+
+@keyframes slidein {
+    from{
+        opacity: 0;
+        transform : translateX(-20px);
+    }
+    to{
+        opacity: 1;
+        transform : translateX(0);
+    }
+}
+
+.transaction:hover {
+    transform: translateX(4px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.transaction.income {
+    border-right-color:#059669;
+}
+
+.transaction.expense {
+    border-right-color:#dc2626;
+}
+
+.transaction-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.transaction-meta {
+    font-size: 0.8rem;
+    color: #718096;
+}
+
+.transaction-amount-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.transaction .delete-btn {
+    background:none;
+    border: none;
+    color: #dc2626;
+    cursor: pointer;
+    font-size: 1.4rem;
+    opacity: 0;
+    transition: all 0.2s ease;
+    padding: 4px 8px;
+    border-radius : 4px;
+    margin-left: 12px;
+}
+
+.transaction:hover .delete-btn {
+    opacity: 1;
+}
+
+.transaction .delete-btn:hover {
+    background-color: #fee2e2;
+    transform: scale(1.1);
+}
+
+
+.form-container {
+    background: linear-gradient(135deg, #f6f8fb, #f1f4f8);
+    padding : 24px;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-container form {
+    height: 100%;
+    display : flex;
+    flex-direction: column;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    color: #4a5568;
+    font-weight: 500;
+}
+
+input, select {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.2s ease;
+    background-color: white;
+    font-family: inherit;
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+input:hover, select:hover {
+    border-color: #cbd5e0;
+}
+
+/* Remove number input spinner arrows so users just type the amount */
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+small {
+    color: #718096;
+    font-size: 0.875rem;
+    margin-top: 4px;
+    display: block;
+}
+
+button[type="submit"], .cancel-btn {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    margin-top: 8px;
+}
+
+button[type="submit"] {
+    background: linear-gradient(135deg, #2e8b57 0%, #3cb371 100%);
+    color: white;
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
+}
+
+button[type="submit"]:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(102, 126, 234, 0.3);
+}
+button[type="submit"]:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
+}
+
+.cancel-btn {
+    background-color: #f1f4f8;
+    color: #4a5568;
+    border: 2px solid #e2e8f0;
+}
+.cancel-btn:hover {
+    background-color: #e2e8f0;
+}
+
+
+/* ==========================================================
+   Navigation (2-page app)
+   ========================================================== */
+
+.app-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 2px solid #f1f4f8;
+}
+
+.app-nav-title {
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: #2e8b57;
+}
+
+.app-nav-links {
+    display: flex;
+    gap: 20px;
+}
+
+.app-nav-links a {
+    text-decoration: none;
+    color: #4a5568;
+    font-weight: 500;
+    padding: 6px 4px;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s ease;
+}
+
+.app-nav-links a:hover {
+    color: #2e8b57;
+}
+
+.app-nav-links a.active {
+    color: #2e8b57;
+    border-bottom-color: #2e8b57;
+}
+
+.content-page {
+    max-width: 860px;
+    margin: 0 auto;
+}
+
+.editable-content {
+    line-height: 1.7;
+}
+
+.editable-content h2 {
+    margin-top: 24px;
+}
+
+.editable-content h2:first-child {
+    margin-top: 0;
+}
+
+.settings-panel {
+    max-width: 620px;
+    margin: 0 auto 24px;
+}
+
+.settings-message {
+    min-height: 1.4em;
+    margin: 12px 0;
+}
+
+.settings-message.success {
+    color: #059669;
+}
+
+.settings-message.error {
+    color: #dc2626;
+}
+
+/* ==========================================================
+   Login / sign-up page
+   ========================================================== */
+
+.auth-page {
+    background: linear-gradient(135deg, #2e8b57, #a8d5ba);
+}
+
+.auth-card {
+    width: 100%;
+    max-width: 440px;
+    padding: 36px;
+    background: white;
+    border-radius: 24px;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
+
+.auth-brand {
+    text-align: center;
+}
+
+.auth-brand h1 {
+    margin: 24px 0 8px;
+}
+
+.auth-brand p {
+    color: #718096;
+    margin-bottom: 24px;
+}
+
+.auth-tabs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    padding: 4px;
+    margin-bottom: 28px;
+    background: #f1f4f8;
+    border-radius: 10px;
+}
+
+.auth-tab {
+    padding: 10px;
+    border: 0;
+    border-radius: 8px;
+    background: transparent;
+    color: #718096;
+    cursor: pointer;
+    font: inherit;
+    font-weight: 600;
+}
+
+.auth-tab.active {
+    background: white;
+    color: #2e8b57;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.password-field {
+    position: relative;
+}
+
+.password-field input {
+    padding-right: 68px;
+}
+
+.password-toggle {
+    position: absolute;
+    top: 50%;
+    right: 12px;
+    transform: translateY(-50%);
+    border: 0;
+    background: transparent;
+    color: #2e8b57;
+    cursor: pointer;
+    font: inherit;
+    font-weight: 600;
+}
+
+.auth-message {
+    min-height: 24px;
+    margin: 4px 0 8px;
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+.auth-message.error {
+    color: #dc2626;
+}
+
+.auth-message.success {
+    color: #059669;
+}
+
+.back-to-app {
+    display: block;
+    margin-top: 22px;
+    color: #2e8b57;
+    text-align: center;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.back-to-app:hover {
+    text-decoration: underline;
+}
+
+.demo-note {
+    margin-top: 18px;
+    color: #718096;
+    font-size: 0.78rem;
+    text-align: center;
+}
+
+
+/* ==========================================================
+   Safe-to-Spend hero card (index.html)
+   ========================================================== */
+
+.safe-to-spend-card {
+    text-align: center;
+    margin-bottom: 24px;
+    padding: 24px;
+    border-radius: 1rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    color: white;
+    transition: background 0.3s ease;
+}
+
+.safe-to-spend-card h1 {
+    font-size: 2.6rem;
+    margin: 10px 0;
+    color: white;
+}
+
+.safe-to-spend-card h2 {
+    color: rgba(255,255,255,0.9);
+}
+
+.safe-to-spend-card small {
+    color: rgba(255,255,255,0.85);
+}
+
+.daily-allowance-text {
+    font-size: 1rem;
+    margin-bottom: 16px;
+    font-weight: 500;
+}
+
+.status-ok { background: linear-gradient(135deg, #059669, #2e8b57); }
+.status-warning { background: linear-gradient(135deg, #f59e0b, #ea580c); }
+.status-danger { background: linear-gradient(135deg, #dc2626, #991b1b); }
+
+.progress-track {
+    width: 100%;
+    height: 10px;
+    background: rgba(255,255,255,0.3);
+    border-radius: 6px;
+    overflow: hidden;
+    margin-bottom: 12px;
+}
+
+.progress-bar {
+    height: 100%;
+    background: white;
+    border-radius: 6px;
+    transition: width 0.3s ease;
+}
+
+
+/* ==========================================================
+   Type toggle (income / expense radio buttons styled as pills)
+   ========================================================== */
+
+.type-toggle {
+    display: flex;
+    gap: 12px;
+}
+
+.type-toggle input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.toggle-label {
+    flex: 1;
+    text-align: center;
+    padding: 10px;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    color: #4a5568;
+    transition: all 0.2s ease;
+}
+
+#type-income:checked + .income-label {
+    background-color: #059669;
+    border-color: #059669;
+    color: white;
+}
+
+#type-expense:checked + .expense-label {
+    background-color: #dc2626;
+    border-color: #dc2626;
+    color: white;
+}
+
+
+/* ==========================================================
+   Budget page — panels, fixed obligations list, overview cards
+   ========================================================== */
+
+.panel {
+    background-color: #fff;
+    padding: 24px;
+    border-radius: 1rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    margin-bottom: 24px;
+}
+
+.inline-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr auto;
+    gap: 16px;
+    align-items: end;
+}
+
+.inline-form .form-group {
+    margin-bottom: 0;
+}
+
+.inline-form button {
+    height: fit-content;
+    margin-top: 0;
+}
+
+.fixed-list {
+    list-style: none;
+    max-height: 320px;
+    overflow-y: auto;
+    margin-bottom: 16px;
+}
+
+.fixed-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    background-color: #f6f8fb;
+    border-left: 4px solid #2e8b57;
+}
+
+.fixed-item-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.fixed-item-meta {
+    font-size: 0.8rem;
+    color: #718096;
+}
+
+.fixed-item-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.fixed-item-amount {
+    font-weight: 600;
+    color: #2d3748;
+}
+
+.edit-btn, .fixed-item .delete-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.1rem;
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+.edit-btn:hover { background-color: #e2e8f0; }
+.fixed-item .delete-btn { color: #dc2626; }
+.fixed-item .delete-btn:hover { background-color: #fee2e2; }
+
+.total-card {
+    display: flex;
+    justify-content: space-between;
+    padding: 16px;
+    background: linear-gradient(135deg, #a8d5ba, #6b8e23);
+    border-radius: 10px;
+    font-weight: 600;
+    color: #1a202c;
+}
+
+.overview-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.overview-card {
+    background-color: #f6f8fb;
+    padding: 18px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.overview-card h3 {
+    font-size: 0.9rem;
+    color: #4a5568;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.overview-card p {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #2d3748;
+}
+
+
+/* ==========================================================
+   Charts — pure CSS, no external chart library
+   ========================================================== */
+
+.charts-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+}
+
+.chart-block h3 {
+    font-size: 1rem;
+    color: #4a5568;
+    margin-bottom: 12px;
+    font-weight: 500;
+}
+
+.donut-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 16px;
+}
+
+.donut {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    position: relative;
+}
+
+.donut::after {
+    content: "";
+    position: absolute;
+    inset: 30px;
+    background-color: #fff;
+    border-radius: 50%;
+}
+
+.donut-legend {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.legend-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+}
+
+.legend-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.legend-value {
+    margin-left: auto;
+    font-weight: 600;
+}
+
+.bar-chart {
+    display: flex;
+    align-items: flex-end;
+    gap: 16px;
+    height: 200px;
+    padding: 12px;
+    background-color: #f6f8fb;
+    border-radius: 10px;
+}
+
+.bar-column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    height: 100%;
+}
+
+.bar {
+    width: 100%;
+    max-width: 40px;
+    background: linear-gradient(180deg, #3cb371, #2e8b57);
+    border-radius: 6px 6px 0 0;
+    min-height: 4px;
+    transition: height 0.3s ease;
+}
+
+.bar-label {
+    margin-top: 8px;
+    font-size: 0.75rem;
+    color: #4a5568;
+    text-align: center;
+}
+
+.empty-state {
+    color: #718096;
+    font-size: 0.9rem;
+    text-align: center;
+    padding: 40px 0;
+}
+
+
+/* ==========================================================
+   Quick Add panel (index.html) — one-click expense presets
+   ========================================================== */
+
+.quick-add-panel {
+    margin-bottom: 24px;
+}
+
+.quick-add-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.quick-add-header h2 {
+    margin-bottom: 0;
+}
+
+.quick-add-new-btn {
+    background-color: #f1f4f8;
+    color: #2e8b57;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 8px 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.quick-add-new-btn:hover {
+    background-color: #e2e8f0;
+}
+
+.quick-add-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.quick-add-pill {
+    display: flex;
+    align-items: stretch;
+    border-radius: 20px;
+    overflow: hidden;
+    background-color: #f6f8fb;
+    border: 2px solid #e2e8f0;
+}
+
+.quick-add-trigger {
+    background: none;
+    border: none;
+    padding: 8px 14px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #2d3748;
+    cursor: pointer;
+}
+
+.quick-add-trigger:hover {
+    background-color: #e2e8f0;
+}
+
+.quick-add-delete {
+    background: none;
+    border: none;
+    border-left: 1px solid #e2e8f0;
+    padding: 8px 10px;
+    color: #dc2626;
+    cursor: pointer;
+    opacity: 0.5;
+    transition: opacity 0.2s ease;
+}
+
+.quick-add-pill:hover .quick-add-delete {
+    opacity: 1;
+}
+
+.quick-add-delete:hover {
+    background-color: #fee2e2;
+}
+
+.quick-add-create-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid #f1f4f8;
+}
+
+.quick-add-create-form input,
+.quick-add-create-form select {
+    width: auto;
+    flex: 1;
+    min-width: 140px;
+}
+
+.quick-add-create-form button {
+    width: auto;
+    margin-top: 0;
+}
+
+
+/* responsiveness */
+
+@media (max-width: 900px) {
+    .main-content {
+        grid-template-columns: 1fr;
+    }
+
+    #transaction-list {
+        max-height: 300px;
+    }
+
+    .inline-form {
+        grid-template-columns: 1fr;
+    }
+
+    .overview-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .charts-row {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* for mobile phones */
+
+@media (max-width: 480px) {
+    .container {
+        padding: 24px;
+    }
+
+    .summary {
+        grid-template-columns: 1fr;
+        gap : 16px;
+    }
+
+    .balance-container h1 {
+        font-size: 2.5rem;
+    }
+
+    .income p,
+    .expenses p {
+        font-size: 1.5rem;
+    }
+
+    .transaction {
+        padding: 14px 16px;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    .app-nav {
+        flex-direction: column;
+        gap: 12px;
+        text-align: center;
+    }
+
+    .safe-to-spend-card h1 {
+        font-size: 2rem;
+    }
+
+    .auth-card {
+        padding: 28px 20px;
+    }
+}
