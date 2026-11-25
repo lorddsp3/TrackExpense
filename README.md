@@ -8,6 +8,10 @@
   A smart and responsive web application for managing personal income, expenses, budgets, and financial goals.
 </p>
 
+# Live Demo:
+
+https://lorddsp3.github.io/TrackExpense/
+
 ---
 
 ## Project Information
@@ -110,6 +114,7 @@ The project demonstrates the practical implementation of HTML, CSS, and JavaScri
 | JavaScript (ES6+)    | Application logic and interactivity |
 | Browser localStorage | Client-side data persistence        |
 | CSS Grid & Flexbox   | Responsive layouts                  |
+| MySQL                | primary database                    |
 
 **Database Architecture (Proposed Enhancement):**
 
@@ -155,28 +160,6 @@ ExpenseTracker/
 └── README.md
 ```
 
-## Installation and Execution
-
-1. Download or clone the repository.
-2. Extract the project files if downloaded as a ZIP.
-3. Open the project folder.
-4. Open `index.html` in a modern web browser.
-5. Navigate through the available sections.
-6. Start adding income, expenses, and budget information.
-
-No additional package installation or build process is required.
-
-## Future Scope
-
-- MySQL database integration for centralized data management.
-- Secure user registration and login with password hashing.
-- Multi-user account support.
-- Cloud-based financial data synchronization.
-- Export financial reports in PDF and CSV formats.
-- Advanced financial analytics.
-- Multi-currency support.
-- Automatic monthly budget rollover.
-
 ## Conclusion
 
 ExpenseTracker provides a practical solution for managing personal finances through a simple and interactive web interface.
@@ -184,17 +167,3 @@ ExpenseTracker provides a practical solution for managing personal finances thro
 The project demonstrates the application of fundamental web technologies, including HTML, CSS, and JavaScript, in developing a real-world application.
 
 It also provides an opportunity to understand client-side data management, CRUD operations, responsive web design, and the potential integration of relational database systems.
-
-## Project Reference
-
-This project is based on the ExpenseTracker web development project:
-
-**Original Repository:**  
-https://github.com/Sunaina-04/ExpenseTracker
-
-**Live Demo:**  
-https://sunaina-04.github.io/ExpenseTracker/
-
-## License
-
-This project is distributed under the MIT License, subject to the original repository's license terms.
